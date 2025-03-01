@@ -12,11 +12,16 @@ _Nice work! :tada: You added a workflow file!_
 
 Here's what the entries in the `welcome.yml` file, on the `welcome-workflow` branch, mean:
 
-- `name: Post welcome comment` gives your workflow a name. This name will appear in the Actions tab of your repository.
-- `on: pull_request: types: [opened]` indicates that your workflow will execute whenever someone opens a pull request in your repository.
-- `permissions` assigns the workflow permissions to operate on the repository
-- `pull-requests: write` gives the workflow permission to write to pull requests. This is needed to create the welcome comment.
-
+- name: Post welcome comment
+on:
+  pull_request:
+    types: [opened]
+permissions:
+  pull-requests: write
+jobs:
+  build:
+    name: Post welcome comment
+    runs-on: ubuntu-latest
 Next, we need to specify jobs to run.
 
 **What is a _job_?**: A job is a set of steps in a workflow that execute on the same runner (a runner is a server that runs your workflows when triggered). Workflows have jobs, and jobs have steps. Steps are executed in order and are dependent on each other. You'll add steps to your workflow later in the course. To read more about jobs, see "[Jobs](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#jobs)".
